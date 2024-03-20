@@ -1,0 +1,292 @@
+[gd_scene load_steps=19 format=3 uid="uid://bms1k8wod33gg"]
+
+[ext_resource type="FontVariation" uid="uid://b0a54gmcbob6m" path="res://fonts/Menu.tres" id="1_8w8m7"]
+[ext_resource type="Script" path="res://scripts/infoScript.gd" id="1_se3q6"]
+[ext_resource type="Texture2D" uid="uid://cim6hb157gjka" path="res://Assets/clima.png" id="2_0n7h7"]
+[ext_resource type="AudioStream" uid="uid://c5m37gkv5kwvo" path="res://Assets/sonido-de-alarma-emergencia-sos-128-ytshorts.savetube.me.mp3" id="5_2bkkv"]
+[ext_resource type="Script" path="res://scripts/CameraScript.gd" id="5_qwyoj"]
+[ext_resource type="PackedScene" uid="uid://dg182ydrgbitt" path="res://scene/persona2.tscn" id="6_lhakc"]
+[ext_resource type="PackedScene" uid="uid://o876m5rws4vv" path="res://scene/pop_up.tscn" id="6_y2scf"]
+[ext_resource type="PackedScene" uid="uid://dd2wkw1cuyvet" path="res://scene/persona.tscn" id="8_xc2xx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j3xwt"]
+font = ExtResource("1_8w8m7")
+font_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_7d235"]
+line_spacing = 1.0
+font = ExtResource("1_8w8m7")
+font_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_vvav2"]
+line_spacing = 1.0
+font = ExtResource("1_8w8m7")
+font_size = 4
+font_color = Color(0.776471, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntfkk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fia13"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n2mrp"]
+line_spacing = 1.0
+font = ExtResource("1_8w8m7")
+font_size = 4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8trsy"]
+size = Vector2(104, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dfm0n"]
+size = Vector2(364.5, 17.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrevg"]
+size = Vector2(16.625, 180)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8w1s"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_se3q6")
+
+[node name="generalInfo" type="StaticBody2D" parent="."]
+
+[node name="SpriteClima" type="Sprite2D" parent="generalInfo"]
+position = Vector2(36, 59)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0n7h7")
+hframes = 4
+vframes = 4
+frame = 3
+
+[node name="hora" type="Label" parent="generalInfo"]
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 56.0
+offset_bottom = 26.0
+text = "00: 00"
+label_settings = SubResource("LabelSettings_j3xwt")
+vertical_alignment = 1
+
+[node name="temperatura" type="Label" parent="generalInfo"]
+offset_left = 1.0
+offset_top = 27.0
+offset_right = 57.0
+offset_bottom = 39.0
+text = "Temperatura
+5ºC"
+label_settings = SubResource("LabelSettings_7d235")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="humedad" type="Label" parent="generalInfo"]
+offset_left = 1.0
+offset_top = 39.0
+offset_right = 57.0
+offset_bottom = 51.0
+text = "Humedad
+55%"
+label_settings = SubResource("LabelSettings_7d235")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelCambioBrillo" type="Label" parent="generalInfo"]
+offset_left = 2.0
+offset_top = 140.0
+offset_right = 58.0
+offset_bottom = 152.0
+text = "Intensidad
+"
+label_settings = SubResource("LabelSettings_7d235")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clima" type="Label" parent="generalInfo"]
+offset_left = 7.0
+offset_top = 52.0
+offset_right = 31.0
+offset_bottom = 64.0
+text = "Clima
+"
+label_settings = SubResource("LabelSettings_7d235")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertaSeismo" type="Label" parent="generalInfo"]
+visible = false
+offset_top = 67.0
+offset_right = 56.0
+offset_bottom = 74.0
+text = "ALERTA SEISMO"
+label_settings = SubResource("LabelSettings_vvav2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertaIncendio" type="Label" parent="generalInfo"]
+visible = false
+offset_top = 77.0
+offset_right = 56.0
+offset_bottom = 84.0
+text = "ALERTA INCENDIO"
+label_settings = SubResource("LabelSettings_vvav2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AlertaGas" type="Label" parent="generalInfo"]
+visible = false
+offset_top = 87.0
+offset_right = 56.0
+offset_bottom = 94.0
+text = "ALERTA FUGA GAS"
+label_settings = SubResource("LabelSettings_vvav2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="generalInfo"]
+wait_time = 0.35
+
+[node name="CheckBoxSeismo" type="CheckBox" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 98.0
+offset_right = 176.0
+offset_bottom = 122.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ntfkk")
+text = "Simular seísmo"
+
+[node name="CheckBoxIncendio" type="CheckBox" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 109.0
+offset_right = 176.0
+offset_bottom = 133.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ntfkk")
+text = "Simular incendio"
+
+[node name="CheckBoxGas" type="CheckBox" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 119.0
+offset_right = 176.0
+offset_bottom = 143.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ntfkk")
+text = "Simular fuga gas"
+
+[node name="CheckButtonAñadirPersona" type="CheckButton" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 132.0
+offset_right = 174.0
+offset_bottom = 156.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fia13")
+text = "Añadir persona"
+
+[node name="SliderIntensidad" type="HSlider" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 148.0
+offset_right = 159.0
+offset_bottom = 164.0
+scale = Vector2(0.3, 0.3)
+
+[node name="timeLabel" type="Label" parent="generalInfo"]
+offset_left = 12.0
+offset_top = 157.0
+offset_right = 45.0
+offset_bottom = 165.0
+text = "Time"
+label_settings = SubResource("LabelSettings_n2mrp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SliderTime" type="HSlider" parent="generalInfo"]
+offset_left = 6.0
+offset_top = 163.0
+offset_right = 159.0
+offset_bottom = 179.0
+scale = Vector2(0.3, 0.3)
+
+[node name="CheckButtonPauseTime" type="CheckButton" parent="generalInfo"]
+offset_left = 9.0
+offset_top = 170.0
+offset_right = 141.0
+offset_bottom = 194.0
+scale = Vector2(0.3, 0.3)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fia13")
+text = "Pause Time"
+
+[node name="Limites" type="CollisionShape2D" parent="generalInfo"]
+position = Vector2(52, 90)
+shape = SubResource("RectangleShape2D_8trsy")
+debug_color = Color(1, 0.517647, 0.258824, 0.419608)
+metadata/_edit_lock_ = true
+
+[node name="Limites2" type="CollisionShape2D" parent="generalInfo"]
+position = Vector2(182.75, 188.75)
+shape = SubResource("RectangleShape2D_dfm0n")
+debug_color = Color(1, 0.517647, 0.258824, 0.419608)
+metadata/_edit_lock_ = true
+
+[node name="Limites4" type="CollisionShape2D" parent="generalInfo"]
+position = Vector2(328.313, 90)
+shape = SubResource("RectangleShape2D_yrevg")
+debug_color = Color(1, 0.517647, 0.258824, 0.419608)
+metadata/_edit_lock_ = true
+
+[node name="Limites3" type="CollisionShape2D" parent="generalInfo"]
+position = Vector2(182, -8.625)
+shape = SubResource("RectangleShape2D_dfm0n")
+debug_color = Color(1, 0.517647, 0.258824, 0.419608)
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="generalInfo"]
+offset_left = 18.0
+offset_top = 3.0
+offset_right = 123.0
+offset_bottom = 27.0
+scale = Vector2(0.2, 0.2)
+theme_override_fonts/font = ExtResource("1_8w8m7")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n8w1s")
+text = "INFORME DIARIO"
+
+[node name="pop_up" parent="generalInfo" instance=ExtResource("6_y2scf")]
+visible = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="generalInfo"]
+stream = ExtResource("5_2bkkv")
+volume_db = -7.9
+bus = &"Alarmas"
+
+[node name="SeismoDelay" type="Timer" parent="generalInfo"]
+wait_time = 6.5
+one_shot = true
+
+[node name="Persona2" parent="generalInfo" instance=ExtResource("6_lhakc")]
+visible = false
+position = Vector2(177, 175)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Persona" parent="generalInfo" instance=ExtResource("8_xc2xx")]
+position = Vector2(172, 173)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+script = ExtResource("5_qwyoj")
+
+[connection signal="toggled" from="generalInfo/CheckBoxSeismo" to="." method="_on_check_box_seismo_toggled"]
+[connection signal="toggled" from="generalInfo/CheckBoxIncendio" to="." method="_on_check_box_incendio_toggled"]
+[connection signal="toggled" from="generalInfo/CheckBoxGas" to="." method="_on_check_box_gas_toggled"]
+[connection signal="toggled" from="generalInfo/CheckButtonAñadirPersona" to="." method="_on_check_button_añadir_persona_toggled"]
+[connection signal="value_changed" from="generalInfo/SliderIntensidad" to="." method="_on_slider_intensidad_value_changed"]
+[connection signal="value_changed" from="generalInfo/SliderTime" to="." method="_on_slider_time_value_changed"]
+[connection signal="toggled" from="generalInfo/CheckButtonPauseTime" to="." method="_on_check_button_pause_time_toggled"]
+[connection signal="pressed" from="generalInfo/Button" to="." method="_on_button_pressed"]

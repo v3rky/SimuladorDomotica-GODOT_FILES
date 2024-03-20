@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1k3gaco633uo"]
+
+[ext_resource type="Script" path="res://scripts/fuegoScript.gd" id="1_qoumq"]
+[ext_resource type="Texture2D" uid="uid://clhugayvu788t" path="res://Assets/fuegotemp.png" id="1_yx31b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oyte"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(0, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvkjo"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(13, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2e0m"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(26, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agsjh"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(39, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1a81"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(52, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri503"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(65, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxxr8"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(78, 0, 13, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tpkw"]
+atlas = ExtResource("1_yx31b")
+region = Rect2(91, 0, 13, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nnn6a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oyte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvkjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2e0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agsjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1a81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri503")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxxr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tpkw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fuegoAnim" type="Node2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_qoumq")
+
+[node name="Animacion" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_nnn6a")
+frame = 5
+frame_progress = 0.390458
